@@ -15,9 +15,14 @@ public class Triangle extends Shape {
         double coeff = (double) a / b;
         for (int j = 0; j < b; j++) {
             for (int i = 0; i < a; i++) {
+                boolean toPrint = i == (int)Math.floor(coeff*(j + 1));
+                if (coeff > 1) {
+                    double temp = 1 / coeff;
+                    toPrint = j + 1 == (int)Math.floor(temp*(i + 1));
+                }
                 if (j == b - 1)
                     builder.append("+");
-                else if (i == 0 || i == (int)Math.floor(coeff*(j + 1)))
+                else if (i == 0 || toPrint )
                     builder.append("+");
                 else
                     builder.append(" ");
