@@ -30,4 +30,8 @@ public class Rectangle extends Shape {
     public double calcArea() {
         return a * b;
     }
+    @Override
+    public String toString() {
+        return String.format("%sRectangle with sides: %d, %d\u001B[0m", shapeColor, a, b);
+    }
 }

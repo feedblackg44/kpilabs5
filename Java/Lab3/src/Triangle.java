@@ -38,4 +38,8 @@ public class Triangle extends Shape {
     public double calcArea() {
         return a * b * 0.5;
     }
+    @Override
+    public String toString() {
+        return String.format("%sTriangle with sides: %d, %d, %f\u001B[0m", shapeColor, a, b, c);
+    }
 }
