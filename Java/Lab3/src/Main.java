@@ -28,29 +28,14 @@ public class Main {
         list.add(new Circle(7, ANSI_PURPLE));
         list.add(new Circle(8, ANSI_YELLOW));
 
-        System.out.format("List of shapes:\n%s\n", showAll(list));
-        System.out.format("Sum of all shapes' areas: %s\n", sumOfAreasOfFigure(list, null));
-        System.out.format("Sum of all Triangles' areas: %s\n\n", sumOfAreasOfFigure(list, Triangle.class));
-        Comparator<Shape> comparatorByArea = Comparator.comparing(Shape::calcArea);
-        list.sort(comparatorByArea);
-        System.out.format("Sorted by Area list of shapes:\n%s\n", showAll(list));
-        Comparator<Shape> comparatorByColor = Comparator.comparing(Shape::getShapeColor);
-        list.sort(comparatorByColor);
-        System.out.format("Sorted by Color list of shapes:\n%s\n", showAll(list));
-    }
-    public static String showAll(ArrayList<Shape> shapes) {
-        StringBuilder builder = new StringBuilder();
-        for (Shape shape : shapes)
-            builder.append(shape.toString()).append("\n");
-        return builder.toString();
-    }
-    public static double sumOfAreasOfFigure(ArrayList<Shape> shapes, Object instance) {
-        int sum = 0;
-        for (Shape shape : shapes)
-            if (instance == null)
-                sum += shape.calcArea();
-            else if (shape.getClass() == instance)
-                sum += shape.calcArea();
-        return sum;
+        ShapeView view = new ShapeView();
+
+        ShapeController controller = new ShapeController(list, view);
+
+        controller.showAll();
+        controller.calculateAreas();
+        controller.calculateSpecificAreas(Triangle.class);
+        controller.sortByAreas();
+        controller.sortByColor();
     }
 }
