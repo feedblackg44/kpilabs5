@@ -1,6 +1,6 @@
+import org.w3c.dom.css.Rect;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Main {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -28,6 +28,9 @@ public class Main {
         list.add(new Circle(7, ANSI_PURPLE));
         list.add(new Circle(8, ANSI_YELLOW));
 
+        Circle circle = new Circle(5, ANSI_RED);
+        System.out.println(circle.draw());
+
         ShapeView view = new ShapeView();
 
         ShapeController controller = new ShapeController(list, view);
@@ -35,6 +38,8 @@ public class Main {
         controller.showAll();
         controller.calculateAreas();
         controller.calculateSpecificAreas(Triangle.class);
+        controller.calculateSpecificAreas(Circle.class);
+        controller.calculateSpecificAreas(Rectangle.class);
         controller.sortByAreas();
         controller.sortByColor();
     }
